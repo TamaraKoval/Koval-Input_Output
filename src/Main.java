@@ -5,11 +5,18 @@ public class Main {
     public static void main(String[] args) throws Exception{
         Scanner scanner = new Scanner(System.in);
 
-        Basket basket = new Basket(new String[]{"Молоко", "Сок", "Сыр", "Творог", "Хлеб"},
-                new int[]{60, 80, 300, 150, 50});
+        Basket basket;
+        File basketFile = new File("basket.txt");
+        if (basketFile.exists()) {
+            basket = Basket.loadFromTxtFile(basketFile);
+        } else {
+            basket = new Basket(new String[]{"Молоко", "Сок", "Сыр", "Творог", "Хлеб"},
+                    new int[]{60, 80, 300, 150, 50});
+        }
 
         basket.printProducts();
         System.out.println("Входим в режим покупок!");
+        basket.printCart();
 
         while (true) {
             System.out.println("Введите через пробел номер продукта и его количество или введите 'end'");
@@ -37,9 +44,8 @@ public class Main {
         }
         basket.printCart();
         System.out.println("Итоговая сумма: " + basket.sumTotal() + " руб");
-        System.out.println(basket); // для проверки
+        // System.out.println(basket); для проверки
 
-        File basketFile = new File("basket.txt");
         basket.saveTxt(basketFile);
     }
 
