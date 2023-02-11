@@ -6,9 +6,9 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         Basket basket;
-        File basketFile = new File("basket.txt");
+        File basketFile = new File("basket.bin");
         if (basketFile.exists()) {
-            basket = Basket.loadFromTxtFile(basketFile);
+            basket = Basket.loadFromBinFile(basketFile);
         } else {
             basket = new Basket(new String[]{"Молоко", "Сок", "Сыр", "Творог", "Хлеб"},
                     new int[]{60, 80, 300, 150, 50});
@@ -46,7 +46,7 @@ public class Main {
         System.out.println("Итоговая сумма: " + basket.sumTotal() + " руб");
         // System.out.println(basket); для проверки
 
-        basket.saveTxt(basketFile);
+        basket.saveBin(basketFile);
     }
 
     private static boolean ending(String str) {
