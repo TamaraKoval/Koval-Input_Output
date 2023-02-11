@@ -1,3 +1,6 @@
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Arrays;
 
 public class Basket {
@@ -65,5 +68,24 @@ public class Basket {
         return "Basket{" +
                 "purchases=" + Arrays.toString(purchases) +
                 '}';
+    }
+
+    public void saveTxt(File textFile) throws IOException {
+        try (PrintWriter out = new PrintWriter(textFile);) {
+            for (String product : products) {
+                out.print(product + " ");
+            }
+            out.print('\n');
+            for (int price : prices) {
+                out.print(price + " ");
+            }
+            out.print('\n');
+            for (int purchase : purchases) {
+                out.print(purchase + " ");
+            }
+            out.print('\n');
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }

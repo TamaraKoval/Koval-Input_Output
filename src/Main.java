@@ -1,3 +1,4 @@
+import java.io.File;
 import java.util.Scanner;
 
 public class Main {
@@ -34,10 +35,12 @@ public class Main {
                 System.out.println("Вы вводите не цифры, а что-то другое! Повторите попытку");
             }
         }
-
         basket.printCart();
         System.out.println("Итоговая сумма: " + basket.sumTotal() + " руб");
         System.out.println(basket); // для проверки
+
+        File basketFile = new File("basket.txt");
+        basket.saveTxt(basketFile);
     }
 
     private static boolean ending(String str) {
