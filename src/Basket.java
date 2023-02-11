@@ -24,7 +24,6 @@ public class Basket {
         if (products.length != prices.length || prices.length != purchases.length) {
             throw new RuntimeException("Ошибка создания корзины");
         }
-        purchases = new int[products.length];
     }
 
     @Override
@@ -77,10 +76,7 @@ public class Basket {
     }
 
     public void saveTxt(File textFile) throws IOException {
-        try (PrintWriter out = new PrintWriter(textFile);) {
-            if (textFile.createNewFile()) {
-                System.out.println("Вы у нас первый раз, мы подготовили для вас свой архивный файл!");
-            }
+        try (PrintWriter out = new PrintWriter(textFile)) {
             for (String product : products) {
                 out.print(product + " ");
             }
