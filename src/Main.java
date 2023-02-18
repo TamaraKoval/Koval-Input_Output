@@ -8,7 +8,7 @@ public class Main {
         File csvLog = new File("basketLog.csv");
 
         Basket basket;
-        File basketFile = new File("basket.txt");
+        File basketFile = new File("basket.json");
         if (basketFile.exists()) {
             basket = Basket.loadFromTxtFile(basketFile);
         } else {
