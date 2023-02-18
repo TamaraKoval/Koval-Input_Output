@@ -4,6 +4,8 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws Exception{
         Scanner scanner = new Scanner(System.in);
+        ClientLog basketLog = new ClientLog();
+        File csvLog = new File("basketLog.csv");
 
         Basket basket;
         File basketFile = new File("basket.txt");
@@ -36,6 +38,7 @@ public class Main {
 
                 if (basket.addToCart(productNum, amount)) {
                     System.out.println("Товар успешно добавлен");
+                    basketLog.log((productNum+1), amount);
                 }
 
             } catch (NumberFormatException exception) {
@@ -47,6 +50,7 @@ public class Main {
         // System.out.println(basket); для проверки
 
         basket.saveTxt(basketFile);
+        basketLog.exportAsCSV(csvLog);
     }
 
     private static boolean ending(String str) {
